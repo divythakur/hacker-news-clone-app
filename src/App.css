@@ -40,3 +40,21 @@ button{
 .authorname{
   font-size:22px;
 }
+@media only screen and (max-width:1256px) {
+  input {
+      width:70%;
+  }
+  button{
+    width:20%;
+  }
+}
+@media only screen and (max-width:480px) {
+  input {
+      width:40%;
+      
+  }
+  button{
+    font-size:12px;
+    width:20%;
+  }
+}
