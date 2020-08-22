@@ -22,14 +22,14 @@ class App extends Component {
   }
   onSubmitHandler = (e) => {
     e.preventDefault();
-    const url = "https://hn.algolia.com/api/v1/search?query=" + this.state.querykeyword;
+    const url = "https://cors-anywhere.herokuapp.com/https://hn.algolia.com/api/v1/search?query=" + this.state.querykeyword;
     request({ url, json: true }, (error, response) => {
       const searchobject = response.body.hits;
       this.setState({ homepagecontainer: searchobject })
     })
   }
   onCommentHandler = (e) => {
-    const url = "http://hn.algolia.com/api/v1/search?tags=comment,story_" + e;
+    const url = "https://cors-anywhere.herokuapp.com/http://hn.algolia.com/api/v1/search?tags=comment,story_" + e;
     request({ url: url, json: true }, (error, response) => {
       if (error) {
         console.log(error);
@@ -49,7 +49,7 @@ class App extends Component {
     this.setState({authordetails:[]})
   }
   onauthordetails=(a)=>{
-    const url ="http://hn.algolia.com/api/v1/users/"+a;
+    const url ="https://cors-anywhere.herokuapp.com/http://hn.algolia.com/api/v1/users/"+a;
     request({ url: url, json: true }, (error, response) => {
       if (error) {
         console.log(error);
@@ -64,7 +64,7 @@ class App extends Component {
 
   }
   componentDidMount = () => {
-    const url = "http://hn.algolia.com/api/v1/search?tags=front_page";
+    const url = "https://cors-anywhere.herokuapp.com/http://hn.algolia.com/api/v1/search?tags=front_page";
     request({ url: url, json: true }, (error, response) => {
       if (error) {
         console.log(error);
@@ -90,7 +90,7 @@ class App extends Component {
               this.state.homepagecontainer.map((d) => {
                 return (
                   <div>
-                    <p><span className="title"><bold><span className="title">{d.title}</span></bold>  <a href={d.url} target="_blank" className="tolink">({d.url})</a></span></p>
+                    <p><span className="title"><span className="title">{d.title}</span>  <a href={d.url} target="_blank" className="tolink">({d.url})</a></span></p>
                     <p><span> <span onClick={this.onCommentHandler.bind(this, d.objectID)} className="down">{d.points} points</span> |<span className="down" onClick={this.onauthordetails.bind(this,d.author)}> {d.author}</span> | <span onClick={this.onCommentHandler.bind(this, d.objectID)} className="down">{d.num_comments} comments</span></span></p>
                   </div>
                 )
@@ -101,7 +101,7 @@ class App extends Component {
         {
           this.state.comments.length != 0 &&
           <div>
-            <p style={{ float: "right", color: "blue",marginRight:"25px",fontSize:"32px",marginTop:"1px",textDecoration:"underline",cursor:"pointer" }} onClick={this.goBack}>Back</p>
+            <p style={{ float: "right", color: "blue",marginRight:"25px",fontSize:32,marginTop:"1px",textDecoration:"underline",cursor:"pointer" }} onClick={this.goBack}>Back</p>
 
             <h3>{this.state.comments[0].story_title}</h3>
             {
