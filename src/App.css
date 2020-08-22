@@ -62,10 +62,18 @@ button{
   }
   
 }
-@media only screen and (min-width:1090px) {
+@media only screen and (max-width:1090px) {
  
   #main{
     margin-left: 80px;
     margin-right: 80px;
+  }
+}
+@media only screen and (max-width:158px) {
+ 
+  #main{
+    margin-left: 20px;
+    margin-right: 20px;
+    width:80%;
   }
 }
